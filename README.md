@@ -65,3 +65,19 @@
 
     其中 返回的 字符串都是 Redis里的key
     每一个key代表100行数据
+
+# 根据Key获取数据
+
+```python
+import redis
+import json
+import gzip
+
+pool = redis.ConnectionPool(host='xxx', decode_responses=False, password="xxx")
+r = redis.Redis(connection_pool=pool)
+
+data = r["e683876242cf51f2a2187ee15fa353e8:00103200"]
+data = gzip.decompress(data)
+data = json.loads(data)
+print(data)
+```
